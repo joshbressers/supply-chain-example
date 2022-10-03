@@ -32,3 +32,6 @@ destination is not empty, continue? [y/N] y
    run the app:
      $ DEBUG=supply-chain-example:* npm start
 ```
+
+`docker build -t supplytest:latest`
+`docker run --rm -p 3000:3000 supplytest:latest`
