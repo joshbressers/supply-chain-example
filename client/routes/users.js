@@ -7,7 +7,7 @@ var client = new Client();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-client.get("http://localhost:8888", function (data, response) {
+client.get(process.env.SERVERURL, function (data, response) {
 
     // parsed response body as js object
     console.log(data);
