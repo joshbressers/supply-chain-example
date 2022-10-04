@@ -35,3 +35,22 @@ destination is not empty, continue? [y/N] y
 
 `docker build -t supplytest:latest`
 `docker run --rm -p 3000:3000 supplytest:latest`
+
+There are two components. The client and server. The client expects the
+SERVERURL environment variable to be set for the client. By defaul the
+client listens on port 3000 and the server listens on port 8888.
+
+To build the contianer images
+```
+docker build -t joshbressers/supply-chain-example-client:latest .
+docker build -t joshbressers/supply-chain-example-server:latest .
+```
+
+The push them
+```
+docker push joshbressers/supply-chain-example-client:latest
+docker push joshbressers/supply-chain-example-server:latest
+```
+
+You can start them up in Kubernetes with
+`kubectl apply -f kube`
