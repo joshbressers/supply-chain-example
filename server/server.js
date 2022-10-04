@@ -4,7 +4,10 @@ const routeConfig = {
     '/': {
         method: 'GET',
         status: 200,
-        controller: () => 'Data',
+        controller: async () => {
+            // requestData.method will be GET 
+            return { status: 200, payload: { data: 'Some data' } };
+        },
     },
 };
 

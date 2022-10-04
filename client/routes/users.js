@@ -1,35 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-const net = require('net');
-const port = 8888;
+var Client = require('node-rest-client').Client;
+var client = new Client();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  const client1 = new net.Socket();
 
-  client1.connect(port,function(){
-    console.log(`Cleint 1 :Connected to server on port ${port}`);
+client.get("http://localhost:8888", function (data, response) {
 
-    //Try to send data to the server
-    client1.write('Hi from the client 1');
-  });
+    // parsed response body as js object
+    console.log(data);
+    // raw response
+    res.send(`Response from server: ${data['data']}`);
+});
 
-  //Handle data coming from the server
-  client1.on('data',function(data){
-    console.log(`Client 1 received from server : ${data}`);
-    res.send(`Response from server: ${data}`);
-  });
-
-  // Handle connection close 
-  client1.on('close',function(){
-    console.log('Cleint 1 :Connection Closed');
-  });
-
-  //Handle error
-  client1.on('error',function(error){
-    console.error(`Connection Error ${error}`); 
-  });
 
 });
 
