@@ -6,5 +6,11 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "node-rest-server": "^3.2.0"
+  },
+  "overrides": {
+    "node-rest-server": {
+      "chalk": "^4.1.2"
+    }
   }
 }
