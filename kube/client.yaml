@@ -13,6 +13,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: supply-chain-example-client
+  namespace: supply-chain-demo
 spec:
   replicas: 1
   selector:
