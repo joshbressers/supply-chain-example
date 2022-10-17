@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: supply-chain-example-server-slim
+spec:
+  selector:
+    app: supply-chain-example-server-slim
+  ports:
+    - port: 8888
+      targetPort: 8888
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supply-chain-example-server-slim
+  namespace: supply-chain-demo-slim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: supply-chain-example-server-slim
+  template:
+    metadata:
+      labels:
+        app: supply-chain-example-server-slim
+    spec:
+      containers:
+        - name: app
+          image: joshbressers/supply-chain-example-server:slim
+          ports:
+            - containerPort: 8888
+          imagePullPolicy: Always
